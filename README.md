@@ -1,2 +1,3 @@
-# Arguments-Parser
-Arguments parser for C++ projects
+# Arguments Parser
+
+Arguments parser for the C++ projects.
