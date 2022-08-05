@@ -9,7 +9,7 @@ if ! test -e "$VERSION_SCRIPT"; then
 fi
 
 # shellcheck disable=SC1090
-source "$VERSION_SCRIPT" && \
+. "$VERSION_SCRIPT" && \
   echo "Installing the '$VERSIONABLE_NAME' target, please wait" && \
   cd "Library" && \
   rm -rf ./Build && \
