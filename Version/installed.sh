@@ -1,4 +1,6 @@
 #!/bin/bash
 
-echo "TBD"
-exit 1
+VERSION="Version: "
+# shellcheck disable=SC2002
+RAW="$(cat /usr/local/lib/pkgconfig/argparse.pc | grep "$VERSION")"
+echo "${RAW/$VERSION/}" | xargs
