@@ -10,8 +10,15 @@ if ! test -e "$VERSION_SCRIPT"; then
   exit 1
 fi
 
-# shellcheck disable=SC2002
 # shellcheck disable=SC1090
-. "$VERSION_SCRIPT" && \
-  RAW="$(cat /usr/local/lib/pkgconfig/"$VERSIONABLE_NAME".pc | grep "$VERSION")" && \
+. "$VERSION_SCRIPT"
+
+PC_FILE="/usr/local/lib/pkgconfig/$VERSIONABLE_NAME.pc"
+if ! test -e "$PC_FILE"; then
+
+  PC_FILE="/usr/local/lib64/pkgconfig/$VERSIONABLE_NAME.pc"
+fi
+
+# shellcheck disable=SC2002
+RAW="$(test -e "$PC_FILE" && cat "$PC_FILE" | grep "$VERSION")" && \
   echo "${RAW/$VERSION/}" | xargs
